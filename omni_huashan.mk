@@ -12,27 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Enhanced NFC
-$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
+# Inherit AOSP device config
+$(call inherit-product, device/sony/huashan/full_huashan.mk)
 
-# Inherit CM common Phone stuff
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit Omni GSM telephony parts
+$(call inherit-product, vendor/omni/config/gsm.mk)
 
-# Inherit device configurations
-$(call inherit-product, device/sony/huashan/huashan.mk)
-
-# Device display
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
-
-# Device identifications
-PRODUCT_DEVICE := huashan
-PRODUCT_NAME := cm_huashan
-PRODUCT_BRAND := Sony
-PRODUCT_MANUFACTURER := Sony
-PRODUCT_MODEL := Xperia SP
+# Inherit from our omni product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
 
 # Build fingerprints
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=C5303 BUILD_FINGERPRINT=Sony/C5303/C5303:4.3/12.1.A.1.207/Nvt_nw:user/release-keys PRIVATE_BUILD_DESC="C5303-user 4.3 JB-MR2-VISKAN-140318-1014 227 test-keys"
 
-TARGET_UNOFFICIAL_BUILD_ID := BETA
+# Overrides for Omni
+PRODUCT_DEVICE := huashan
+PRODUCT_NAME := omni_huashan

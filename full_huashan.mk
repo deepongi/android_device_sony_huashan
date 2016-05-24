@@ -12,22 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit AOSP common.
-$(call inherit-product, vendor/aosp/common.mk)
-
-# Inherit device configurations
-$(call inherit-product, device/sony/huashan/huashan.mk)
-
 # Device display
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit taoshan device
+$(call inherit-product, device/sony/huashan/huashan.mk)
+
+# Inherit common Sony resources
+$(call inherit-product, device/sony/common/radio.mk)
+
 # Device identifications
 PRODUCT_DEVICE := huashan
-PRODUCT_NAME := aosp_huashan
+PRODUCT_NAME := full_huashan
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
 PRODUCT_MODEL := Xperia SP
-
-# Build fingerprints
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=C5303 BUILD_FINGERPRINT=Sony/C5303/C5303:4.3/12.1.A.1.207/Nvt_nw:user/release-keys PRIVATE_BUILD_DESC="C5303-user 4.3 JB-MR2-VISKAN-140318-1014 227 test-keys"
